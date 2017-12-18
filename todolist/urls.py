@@ -20,5 +20,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', views.todo_list)
+    url(r'^$', views.todo_list),
+    url(r'^delete/(?P<pk>\d+)/', views.delete),
+    url(r'^complete/(?P<pk>\d+)/', views.complete),
 ]
