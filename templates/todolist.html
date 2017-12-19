@@ -12,7 +12,11 @@
             </tr>
             </thead>
             <tbody>
-
+            {% for todo in todolist %}
+                <tr>
+                    <td>{{ todo.title }}</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
