@@ -13,9 +13,23 @@
             </thead>
             <tbody>
             {% for todo in todolist %}
-                <tr>
-                    <td>{{ todo.title }}</td>
-                </tr>
+            <tr>
+              <td>{{ todo.title }}</td>
+              <td>
+                {% if todo.completed %}
+                  <del>Completed</del>
+                {% else %}
+                  <form action="/complete/{{ todo.id }}/">
+                    <button class="btn btn-primary" type="submit">Check</button>
+                  </form>
+                {% endif %}
+              </td>
+              <td>
+                <form action="/delete/{{ todo.id }}/">
+                  <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
             {% endfor %}
             </tbody>
         </table>
