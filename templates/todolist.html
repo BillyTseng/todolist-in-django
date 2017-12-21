@@ -33,5 +33,30 @@
             {% endfor %}
             </tbody>
         </table>
+        <div>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modal-add">Add</button>
+        </div>
+        <div class="modal fade" id="modal-add">
+         <form method="post">
+            {% csrf_token %}
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4>ADD TODO</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group">
+                    <span class="input-group-addon">title</span>
+                    <input type="text" class="form-control" name="title" />
+                  </div>
+                </div>
+                <input type="hidden" name="action" value="add" />
+                <div class="modal-footer">
+                  <button class="btn btn-primary" type="submit">OK</button>
+                </div>
+              </div>
+            </div>
+         </form>
+        </div>
     </div>
 {% endblock %}

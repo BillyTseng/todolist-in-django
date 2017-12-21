@@ -1,5 +1,27 @@
-from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from .models import Todo
 
 
 def todo_list(request):
-    return render(request, 'todolist.html')
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'add':
+            title = request.POST.get('title')
+            Todo.objects.create(title=title)
+
+    todolist = Todo.objects.all()
+    return render(request, 'todolist.html', locals())
+
+
+def delete(request, pk):
+    todo = get_object_or_404(Todo, id=pk)
+    todo.delete()
+    return HttpResponseRedirect('/')
+
+
+def complete(request, pk):
+    todo = get_object_or_404(Todo, id=pk)
+    todo.completed = True
+    todo.save()
+    return HttpResponseRedirect('/')
